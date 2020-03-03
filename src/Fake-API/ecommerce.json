@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "lianeddy",
+      "password": "abc123",
+      "email": "lian.eddy@gmail.com",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "password": "admin",
+      "email": "admin@admin.com",
+      "role": "admin"
+    },
+    {
+      "username": "lian",
+      "email": "lian.eddy@mail.com",
+      "password": "123",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "username": "lianedd",
+      "email": "lian.eddy@gmail.com",
+      "password": "asd",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "username": "oi",
+      "email": "oi",
+      "password": "oi",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "username": "asd",
+      "email": "asd",
+      "password": "asd",
+      "role": "user",
+      "id": 6
+    }
+  ]
+}
