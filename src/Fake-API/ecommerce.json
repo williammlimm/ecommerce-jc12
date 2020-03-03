@@ -15,32 +15,44 @@
       "role": "admin"
     },
     {
-      "username": "lian",
-      "email": "lian.eddy@mail.com",
-      "password": "123",
-      "role": "user",
-      "id": 3
-    },
-    {
-      "username": "lianedd",
-      "email": "lian.eddy@gmail.com",
-      "password": "asd",
-      "role": "user",
-      "id": 4
-    },
-    {
-      "username": "oi",
-      "email": "oi",
-      "password": "oi",
-      "role": "user",
-      "id": 5
-    },
-    {
       "username": "asd",
       "email": "asd",
       "password": "asd",
       "role": "user",
-      "id": 6
+      "id": 3
+    },
+    {
+      "username": "qwe",
+      "email": "qwe",
+      "password": "qwe",
+      "role": "user",
+      "id": 4
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Jordan 7 Retro Barcelona Nights",
+      "brand": "Jordan",
+      "price": 1350000,
+      "category": "Men",
+      "image": "https://d38t85204sb0x0.cloudfront.net/eyJidWNrZXQiOiJraWNrYXZlbnVlLWFzc2V0cyIsImtleSI6InByb2R1Y3RzLzQxMS84NDczZmQwZi1hNTEwLTQxYTMtOTlhYS05NTgyMDg1NjNmNjAuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6NTAwfX19"
+    },
+    {
+      "id": 1,
+      "name": "Jordan 7 Retro Barcelona Nights",
+      "brand": "Jordan",
+      "price": 1350000,
+      "category": "Men",
+      "image": "https://d38t85204sb0x0.cloudfront.net/eyJidWNrZXQiOiJraWNrYXZlbnVlLWFzc2V0cyIsImtleSI6InByb2R1Y3RzLzQxMS84NDczZmQwZi1hNTEwLTQxYTMtOTlhYS05NTgyMDg1NjNmNjAuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6NTAwfX19"
+    },
+    {
+      "id": 1,
+      "name": "Jordan 7 Retro Barcelona Nights",
+      "brand": "Jordan",
+      "price": 1350000,
+      "category": "Men",
+      "image": "https://d38t85204sb0x0.cloudfront.net/eyJidWNrZXQiOiJraWNrYXZlbnVlLWFzc2V0cyIsImtleSI6InByb2R1Y3RzLzQxMS84NDczZmQwZi1hNTEwLTQxYTMtOTlhYS05NTgyMDg1NjNmNjAuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6NTAwfX19"
     }
   ]
 }

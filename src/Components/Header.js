@@ -15,12 +15,23 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Logout } from '../Redux/Action';
 
 const Example = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+  const gState = useSelector(({auth}) => {
+    return{
+      logged : auth.logged,
+      username : auth.username
+
+    }
+  });
+  console.log(gState)
+  const dispatch = useDispatch();
+  const logOut = () => dispatch(Logout());
+  
 
   return (
     <div>
@@ -46,18 +57,40 @@ const Example = (props) => {
               <DropdownToggle nav caret>
                 <FontAwesomeIcon icon={faUser}/>
               </DropdownToggle>
-              <DropdownMenu right>
-                <Link to='/login'>
-                  <DropdownItem>
-                    Login
-                  </DropdownItem>
-                </Link>
-                <Link to='/register'>
-                  <DropdownItem>
-                    Register
-                  </DropdownItem>
-                </Link>
-              </DropdownMenu>
+              {
+                gState.logged
+                ?
+                <DropdownMenu right>
+                    <DropdownItem>
+                      Cart
+                    </DropdownItem>
+                    <DropdownItem>
+                      Transaction History
+                    </DropdownItem>
+                    <DropdownItem>
+                      Profile
+                    </DropdownItem>
+                    <Link to ='/'>
+                      <DropdownItem onClick={logOut}>
+                        Log Out
+                      </DropdownItem>
+                    </Link>
+                </DropdownMenu>
+                :
+                <DropdownMenu right>
+                  <Link to='/login'>
+                    <DropdownItem>
+                      Login
+                    </DropdownItem>
+                  </Link>
+                  <Link to='/register'>
+                    <DropdownItem>
+                      Register
+                    </DropdownItem>
+                  </Link>
+                </DropdownMenu>
+                
+              }
             </UncontrolledDropdown>
           </Nav>
         </Collapse>

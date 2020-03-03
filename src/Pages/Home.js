@@ -6,6 +6,7 @@ import MenCat from '../Public/Assets/$_10.jpg';
 import WomenCat from '../Public/Assets/womencat.jpg';
 import KidsCat from '../Public/Assets/kidscat.jpg';
 import CardHome from '../Components/CardHome';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
     state = { 
@@ -43,7 +44,7 @@ class Home extends Component {
         return ( 
             <div>
               <div>
-                <Jumbotron style={{backgroundImage : 'linear-gradient(to right, #B48C69, #F5F5F5, #F5F5F5, #F5F5F5)', height: '80vh'}} >
+                <Jumbotron style={{backgroundImage : 'linear-gradient(to right, #B48C69, #F5F5F5, #F5F5F5, #F5F5F5)', height: '500px'}} >
                   <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
                     <div>
                       <Fade bottom>
@@ -56,7 +57,9 @@ class Home extends Component {
                         <div>
                           {/* <hr className="my-2" /> */}
                           <p className="lead">
-                            <Button style={{backgroundColor: '#1E2535'}}>Shop Now</Button>
+                            <Link to='/products'>
+                              <Button style={{backgroundColor: '#1E2535'}}>Shop Now</Button>
+                            </Link>
                           </p>
                         </div>
                       </Fade>
