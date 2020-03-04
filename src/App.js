@@ -8,6 +8,7 @@ import LoginPage from './Pages/LoginPage';
 // import RegisterPage from './Pages/RegisterPage';
 import RegisterPage from './Pages/RegisterHooks'
 import ProductsPage from './Pages/ProductsPage'
+import LatihanAxios from './Pages/LatihanAxios';
 
 class App extends Component{
   render(){
@@ -18,6 +19,7 @@ class App extends Component{
         <Route path='/login' component={LoginPage} />
         <Route path='/register' component={RegisterPage} />
         <Route path='/products' component={ProductsPage} />
+        <Route path='/latihan' component={LatihanAxios} />
         <Footer/>
       </div>
     )

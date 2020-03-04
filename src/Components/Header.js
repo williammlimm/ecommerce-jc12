@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -36,9 +35,11 @@ const Example = (props) => {
   return (
     <div>
       <Navbar expand="md" light style={{ backgroundColor : 'none' }}>
-        <Link to='/'>
-          <NavbarBrand>Shoesilo</NavbarBrand>
-        </Link>
+        {/* <NavbarBrand> */}
+          <Link to='/' style={{color: 'gray', textDecoration: 'none'}}>
+            Shoesilo
+          </Link>
+        {/* </NavbarBrand> */}
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
