@@ -87,5 +87,35 @@
       "category": "Men",
       "image": "https://d38t85204sb0x0.cloudfront.net/eyJidWNrZXQiOiJraWNrYXZlbnVlLWFzc2V0cyIsImtleSI6InByb2R1Y3RzLzQxMS84NDczZmQwZi1hNTEwLTQxYTMtOTlhYS05NTgyMDg1NjNmNjAuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6NTAwfX19"
     }
+  ],
+  "latihan": [
+    {
+      "nama": "asd",
+      "id": 1
+    },
+    {
+      "nama": "asd",
+      "id": 2
+    },
+    {
+      "nama": "asd",
+      "id": 3
+    },
+    {
+      "nama": "asd",
+      "id": 4
+    },
+    {
+      "nama": "asd",
+      "id": 5
+    },
+    {
+      "nama": "asd",
+      "id": 6
+    },
+    {
+      "nama": "asd",
+      "id": 7
+    }
   ]
 }
