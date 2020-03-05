@@ -23,7 +23,8 @@ class Home extends Component {
           name : 'Kids',
           image: KidsCat
         },
-      ]
+      ],
+      boolean: false
     }
 
     renderCardHome = () => {
@@ -71,7 +72,13 @@ class Home extends Component {
                 </Jumbotron>
               </div>
               <div style={{display: 'flex'}} className='container'>
-                {this.renderCardHome()}
+                {
+                  this.state.boolean
+                  ?
+                  this.renderCardHome()
+                  : 
+                  null
+                }
               </div>
             </div>
         );

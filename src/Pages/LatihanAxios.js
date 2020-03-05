@@ -3,7 +3,13 @@ import Axios from 'axios';
 
 class LatihanAxios extends Component {
     state = { 
-        data : []
+        data : [],
+        idData: 1,
+        form : {
+            nama : '',
+            boolean : '',
+            laptop : ''
+        }
     }
 
     componentDidMount(){
@@ -48,11 +54,22 @@ class LatihanAxios extends Component {
     }
 
     onBtnEditData = () => {
-        let nama = this.refs.nama.value;
-
-        Axios.patch('http://localhost:2000/latihan/1', { nama:nama })
+        let { nama, boolean, laptop } = this.state.form;  
+        // {nama: "asdasdasd", boolean: "", laptop: "qweqweqwe"}
+        let obj = {}
+        if(nama){
+            obj.nama = nama
+        }
+        if(boolean){
+            obj.boolean = boolean
+        }
+        if(laptop){
+            obj.laptop = laptop
+        }
+        Axios.patch(`http://localhost:2000/latihan/${this.state.idData}`, obj)
         .then((res) => {
             console.log(res)
+            this.fetchData()
         })
         .catch((err) => {
             console.log(err)
@@ -62,7 +79,7 @@ class LatihanAxios extends Component {
     onBtnEditDataPut = () => {
         let nama = this.refs.nama.value;
 
-        Axios.put('http://localhost:2000/latihan/1', { nama })
+        Axios.put(`http://localhost:2000/latihan/${this.state.idData}`, { nama })
         .then((res) => {
             console.log(res)
         })
@@ -72,9 +89,10 @@ class LatihanAxios extends Component {
     }
 
     onBtnDeleteData = () => {
-        Axios.delete('http://localhost:2000/latihan/3')
+        Axios.delete(`http://localhost:2000/latihan/${this.state.idData}`)
         .then((res) => {
             console.log(res)
+            this.fetchData()
         })
         .catch((err) => {
             console.log(err)
@@ -103,7 +121,7 @@ class LatihanAxios extends Component {
     renderSelect =  () => {
         return this.state.data.map((val) => {
             return(
-                <option value={val.id} key={val.id} ref={`select${val.id}`}>{val.id}</option>
+                <option value={val.id} key={val.id}>{val.id}</option>
             )
         })
     }
@@ -123,12 +141,24 @@ class LatihanAxios extends Component {
     //     })
     // }
 
+    handleChange = (e) => {
+        console.log(e.target.id)
+        this.setState({
+            form : {
+                ...this.state.form,
+                [e.target.id] : e.target.value
+            }
+        })
+    }
+
     render() { 
+        console.log(this.state.form)
+        console.log(this.state.idData)
         return ( 
             <div>
                 Ini halaman latihan
                 <div>
-                    <select>
+                    <select onChange={(e) => this.setState({ idData : e.target.value })}>
                         {this.renderSelect()}
                     </select>
                     {/* {this.renderData()} */}
@@ -143,18 +173,30 @@ class LatihanAxios extends Component {
                                 <th>
                                     nama
                                 </th>
+                                <th>
+                                    boolean
+                                </th>
+                                <th>
+                                    laptop
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 this.state.data.map((val) => {
                                     return (
-                                        <tr style={{border: '1px solid black'}}>
+                                        <tr style={{border: '1px solid black'}} key={val.id}>
                                             <td>
                                                 {val.id}
                                             </td>
                                             <td>
                                                 {val.nama}
+                                            </td>
+                                            <td>
+                                                {val.boolean}
+                                            </td>
+                                            <td>
+                                                {val.laptop}
                                             </td>
                                         </tr>
                                     )
@@ -164,7 +206,10 @@ class LatihanAxios extends Component {
                     </table>
                 </div>
                 <div>
-                    <input type='text' ref='nama' />
+                    <input type='text' ref='nama' placeholder='nama' onChange={this.handleChange} id='nama'/>
+                    <input type='text' ref='boolean' placeholder='boolean' onChange={this.handleChange} id='boolean'/>
+                    <input type='text' ref='laptop' placeholder='laptop' onChange={this.handleChange} id='laptop'/>
+
                     <input type='button' value='Add' onClick={this.onBtnAddData}/>
                     <input type='button' value='Edit' onClick={this.onBtnEditData}/>
                     <input type='button' value='EditPut' onClick={this.onBtnEditDataPut}/>
