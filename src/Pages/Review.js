@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Login } from '../Redux/Action'
 
-class Review extends Component {
+const Review = () => {
+    const [contoh, setContoh] = useState(0)
+    const dispatch = useDispatch()
 
-    state = {  }
+    const logged = useSelector((state) => {
+        return {
+            logged: state.auth.logged,
+            role : state.auth.role
+        }
+    })
 
-    componentDidMount(){
-
+    const LoginHooks = () => {
+        dispatch(Login({
+            username : 'lianeddy',
+            email : 'lianeddy@mail.com',
+            role: 'admin',
+            password : '123'
+        }))
     }
 
-    componentDidUpdate(){
-
-    }
-    
-    componentWillUnmount(){
-
-    }
-
-    render() { 
-        return ( 
-            <div>
-                Ini Review
-            </div> 
-        );
-    }
+    console.log(logged)
+    // console.log(role)
+    return ( 
+        <div>
+            <input type='button' value='-' onClick={() => setContoh(contoh-1)}/>
+            {contoh}
+            {logged.role}
+            <input type='button' value='+' onClick={() => setContoh(contoh+1)}/>
+            <input type='button' value='Login' onClick={LoginHooks}/>
+        </div>
+    );
 }
  
 export default Review;

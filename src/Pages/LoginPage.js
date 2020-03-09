@@ -10,6 +10,9 @@ class LoginPage extends Component {
     state = {  }
 
     onBtnLogin = () => {
+
+        // Simpan username di local storage
+
         let username = this.username.value;
         let password = this.password.value;
 
@@ -19,13 +22,14 @@ class LoginPage extends Component {
             if(res.data.length === 0){
                 window.alert('User does not Exist')
             }else{
-                let { id, username, email, role } = res.data[0]
+                let { id, username, email, role, password } = res.data[0]
                 this.props.Login({
                     id,
                     username,
                     email,
                     role
                 })
+                localStorage.setItem('username', JSON.stringify({ username, password }))
             }
         })
         .catch((err) => {

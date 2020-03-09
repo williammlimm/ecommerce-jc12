@@ -3,6 +3,7 @@ import axios from 'axios';
 import { API_URL } from '../Support/API_URL';
 import ProductCard from '../Components/ProductCard';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 
 
 class ProductsPage extends Component{
@@ -60,12 +61,14 @@ class ProductsPage extends Component{
     renderCardProduct = () => {
         return this.state.data.map((val) => {
             return(
-                <ProductCard 
-                    name={val.name}
-                    image={val.image}
-                    price={val.price}
-                    brand={val.brand}
-                />
+                <Link to={`/product-detail?id=${val.id}`}>
+                    <ProductCard 
+                        name={val.name}
+                        image={val.image}
+                        price={val.price}
+                        brand={val.brand}
+                    />
+                </Link>
             )
         })
     }

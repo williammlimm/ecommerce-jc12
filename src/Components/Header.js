@@ -27,9 +27,12 @@ const Example = (props) => {
 
     }
   });
-  console.log(gState)
+  // console.log(gState)
   const dispatch = useDispatch();
-  const logOut = () => dispatch(Logout());
+  const logOut = () => {
+    dispatch(Logout())
+    localStorage.removeItem('username')
+  };
   
 
   return (

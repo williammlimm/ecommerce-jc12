@@ -1,15 +1,25 @@
-var arr = [1,2,3];
+// var arr = [1,2,3];
 
 // console.log(arr.map((val) => {
 //     return val *3
 // }))
 
-arr.forEach(() => {
-    console.log('halo')
-})
+// arr.forEach(() => {
+//     console.log('halo')
+// })
 
-// var obj = {
-//     nama : 'lian'
+var obj = {
+    nama : 'lian'
+}
+
+let { nama } = obj;
+
+console.log(nama)
+
+// function tambah(x=1, y){
+//     console.log(x, 'ini x')
+//     console.log(y, 'ini y')
+//     return x+y
 // }
 
-// let { nama } = obj;
+// console.log(tambah(5))
