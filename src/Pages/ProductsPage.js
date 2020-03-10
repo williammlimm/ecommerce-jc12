@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { fetchProduct } from '../Redux/Action';
 import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
 
 class ProductsPage extends Component{
@@ -77,6 +78,13 @@ class ProductsPage extends Component{
     }
 
     render(){
+        if(this.props.loading){
+            return(
+                <div className='d-flex justify-content-center'>
+                    <Loader type="Circles" color="#5A6268" height={80} width={80}/>
+                </div>
+            )
+        }
         console.log(this.props.product)
         return ( 
             <div className='d-flex'>
@@ -95,7 +103,8 @@ class ProductsPage extends Component{
 
 const mapStatetoProps = (state) => {
     return{
-        product : state.product.productList
+        product : state.product.productList,
+        loading : state.product.loading
     }
 }
  
