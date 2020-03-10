@@ -23,3 +23,5 @@ console.log(nama)
 // }
 
 // console.log(tambah(5))
+
+var token = '{"username":"admin","password":"admin"}'

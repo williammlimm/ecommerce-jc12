@@ -16,25 +16,27 @@ class LoginPage extends Component {
         let username = this.username.value;
         let password = this.password.value;
 
-        axios.get(`${API_URL}/users?username=${username}&password=${password}`)
-        .then((res) => {
-            console.log(res.data)
-            if(res.data.length === 0){
-                window.alert('User does not Exist')
-            }else{
-                let { id, username, email, role, password } = res.data[0]
-                this.props.Login({
-                    id,
-                    username,
-                    email,
-                    role
-                })
-                localStorage.setItem('username', JSON.stringify({ username, password }))
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        this.props.Login(username, password)
+
+        // axios.get(`${API_URL}/users?username=${username}&password=${password}`)
+        // .then((res) => {
+        //     console.log(res.data)
+        //     if(res.data.length === 0){
+        //         window.alert('User does not Exist')
+        //     }else{
+        //         let { id, username, email, role, password } = res.data[0]
+        //         this.props.Login({
+        //             id,
+        //             username,
+        //             email,
+        //             role
+        //         })
+        //         localStorage.setItem('username', JSON.stringify({ username, password }))
+        //     }
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
         
     }
 

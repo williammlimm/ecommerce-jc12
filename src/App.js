@@ -12,33 +12,37 @@ import LatihanAxios from './Pages/LatihanAxios';
 import Review from './Pages/Review';
 import ProductDetail from './Pages/ProductDetail';
 import ManageProducts from './Pages/ManageProducts';
-import Axios from 'axios';
-import { API_URL } from './Support/API_URL';
-import { Login } from './Redux/Action';
+// import Axios from 'axios';
+// import { API_URL } from './Support/API_URL';
+import { Login, keepLogin } from './Redux/Action';
 import { connect } from 'react-redux';
 
 class App extends Component{
 
   componentDidMount(){
-    let token = localStorage.getItem('username')
+    let token = localStorage.getItem('token')
     if(token){
-      console.log(JSON.parse(token))
-      let tokenParse = JSON.parse(token)
-      Axios.get(`${API_URL}/users?username=${tokenParse.username}&password=${tokenParse.password}`)
-      .then((res) => {
-        console.log(res.data[0])
-        let { username, email, role, id } = res.data[0];
-        this.props.Login({
-          username, 
-          email, 
-          role, 
-          id
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      this.props.keepLogin(token)
     }
+    // let token = localStorage.getItem('username')
+    // if(token){
+    //   console.log(JSON.parse(token))
+    //   let tokenParse = JSON.parse(token)
+    //   Axios.get(`${API_URL}/users?username=${tokenParse.username}&password=${tokenParse.password}`)
+    //   .then((res) => {
+    //     console.log(res.data[0])
+    //     let { username, email, role, id } = res.data[0];
+    //     this.props.Login({
+    //       username, 
+    //       email, 
+    //       role, 
+    //       id
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+    // }
   }
 
   render(){
@@ -59,4 +63,4 @@ class App extends Component{
   }
 }
 
-export default connect(null, { Login })(App);
+export default connect(null, { Login, keepLogin })(App);

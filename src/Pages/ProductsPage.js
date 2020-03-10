@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { API_URL } from '../Support/API_URL';
+// import axios from 'axios';
+// import { API_URL } from '../Support/API_URL';
 import ProductCard from '../Components/ProductCard';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
+import { fetchProduct } from '../Redux/Action';
+import { connect } from 'react-redux';
 
 
 class ProductsPage extends Component{
@@ -12,17 +14,18 @@ class ProductsPage extends Component{
         category: []
     }
     componentDidMount(){
-        axios.get(`${API_URL}/products`)
-        .then((res) => {
-            this.setState({
-                data : res.data,
-                category : res.data.map((val) => val.brand)
-            })
-            console.log(this.state.category)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        this.props.fetchProduct()
+        // axios.get(`${API_URL}/products`)
+        // .then((res) => {
+        //     this.setState({
+        //         data : res.data,
+        //         category : res.data.map((val) => val.brand)
+        //     })
+        //     console.log(this.state.category)
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
     }
 
     
@@ -49,19 +52,19 @@ class ProductsPage extends Component{
         return categories
     }
 
-    handleChange = (e) => {
-        axios.get(`${API_URL}/products?brand=${e.value}`)
-        .then((res) => {
-            this.setState({
-                data: res.data
-            })
-        })
-    }
+    // handleChange = (e) => {
+    //     axios.get(`${API_URL}/products?brand=${e.value}`)
+    //     .then((res) => {
+    //         this.setState({
+    //             data: res.data
+    //         })
+    //     })
+    // }
 
     renderCardProduct = () => {
-        return this.state.data.map((val) => {
+        return this.props.product.map((val) => {
             return(
-                <Link to={`/product-detail?id=${val.id}`}>
+                <Link to={`/product-detail?id=${val.id}`} key={val.id}>
                     <ProductCard 
                         name={val.name}
                         image={val.image}
@@ -74,10 +77,11 @@ class ProductsPage extends Component{
     }
 
     render(){
+        console.log(this.props.product)
         return ( 
             <div className='d-flex'>
                 <div className='col-2'>
-                    <Select options={this.renderBrandName()} onChange={this.handleChange} />
+                    <Select options={this.renderBrandName()} />
                 </div>
                 <div  className='col-10'>
                     <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
@@ -88,5 +92,11 @@ class ProductsPage extends Component{
         );
     }
 }
+
+const mapStatetoProps = (state) => {
+    return{
+        product : state.product.productList
+    }
+}
  
-export default ProductsPage;
+export default connect(mapStatetoProps, { fetchProduct })(ProductsPage);

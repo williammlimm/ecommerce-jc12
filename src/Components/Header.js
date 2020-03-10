@@ -31,7 +31,7 @@ const Example = (props) => {
   const dispatch = useDispatch();
   const logOut = () => {
     dispatch(Logout())
-    localStorage.removeItem('username')
+    localStorage.removeItem('token')
   };
   
 

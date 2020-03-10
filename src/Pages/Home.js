@@ -31,7 +31,7 @@ class Home extends Component {
       let { dataCard } = this.state;
       return dataCard.map((val) => {
         return(
-          <div className='col-4'>
+          <div className='col-4' key={val.name}>
             <CardHome
               image={val.image}
               name={val.name}
