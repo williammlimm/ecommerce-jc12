@@ -49,13 +49,13 @@ class ProductDetail extends Component {
 
     render() { 
         let { data } = this.props;
-        if(this.props.loading){
-            return(
-                <div style={{height : '100vh'}}>
-                    loading
-                </div>
-            )
-        }
+        // if(this.props.loading){
+        //     return(
+        //         <div style={{height : '100vh'}}>
+        //             loading
+        //         </div>
+        //     )
+        // }
         return ( 
             <div className='row mr-0'>
                 <div className='col-4 d-flex justify-content-center'>
