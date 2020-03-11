@@ -1,24 +1,37 @@
 const INITIAL_STATE = {
     productList : [],
     brands: [],
-    loading : false
+    loading : false,
+    error : '',
+    productById : {}
 }
 
 export const productReducer = (state = INITIAL_STATE, action) => {
-    console.log(action)
     switch(action.type){
-        case 'FETCH_DATA_START' : 
-            return {
+        case 'FETCH_DATA_START' :
+            return{
+                ...state,
                 loading: true
             }
         case 'FETCH_DATA_SUCCESS' : 
-            return {
-                loading : false,
-                productList : action.payload
+            return{
+                ...state,
+                productList : action.payload,
+                loading: false
+            }
+        case 'FETCH_DATA_ID_SUCCESS' : 
+            return{
+                ...state,
+                productById : action.payload,
+                loading : false
             }
         case 'FETCH_DATA_FAILED' : 
-            return INITIAL_STATE
-        default :
+            return{
+                ...state,
+                error : action.payload,
+                loading : false
+            }
+        default : 
             return state
     }
 }

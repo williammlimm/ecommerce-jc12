@@ -16,17 +16,6 @@ class ProductsPage extends Component{
     }
     componentDidMount(){
         this.props.fetchProduct()
-        // axios.get(`${API_URL}/products`)
-        // .then((res) => {
-        //     this.setState({
-        //         data : res.data,
-        //         category : res.data.map((val) => val.brand)
-        //     })
-        //     console.log(this.state.category)
-        // })
-        // .catch((err) => {
-        //     console.log(err)
-        // })
     }
 
     
@@ -78,6 +67,14 @@ class ProductsPage extends Component{
     }
 
     render(){
+        console.log(this.props.error)
+        if(this.props.error){
+            return(
+                <div>
+                    error
+                </div>
+            )
+        }
         if(this.props.loading){
             return(
                 <div className='d-flex justify-content-center'>
@@ -85,7 +82,6 @@ class ProductsPage extends Component{
                 </div>
             )
         }
-        console.log(this.props.product)
         return ( 
             <div className='d-flex'>
                 <div className='col-2'>
@@ -104,7 +100,8 @@ class ProductsPage extends Component{
 const mapStatetoProps = (state) => {
     return{
         product : state.product.productList,
-        loading : state.product.loading
+        loading : state.product.loading,
+        error : state.product.error
     }
 }
  

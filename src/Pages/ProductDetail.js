@@ -4,6 +4,8 @@ import { API_URL } from '../Support/API_URL';
 import { Button } from 'reactstrap';
 import Select from 'react-select';
 import Loader from 'react-loader-spinner';
+import { fetchDataById } from '../Redux/Action';
+import { connect } from 'react-redux';
 
 class ProductDetail extends Component {
     state = { 
@@ -42,24 +44,20 @@ class ProductDetail extends Component {
 
     componentDidMount(){
         let id = this.props.location.search.split('=')[1]
-        console.log(id)
-        Axios.get(`${API_URL}/products/${id}`)
-        .then((res) => {
-            this.setState({
-                data: res.data
-            })
-            console.log(this.state.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        this.props.fetchDataById(id)
     }
 
     render() { 
-        let { data } = this.state;
-        console.log(typeof(data.price))
+        let { data } = this.props;
+        if(this.props.loading){
+            return(
+                <div style={{height : '100vh'}}>
+                    loading
+                </div>
+            )
+        }
         return ( 
-            <div className='row'>
+            <div className='row mr-0'>
                 <div className='col-4 d-flex justify-content-center'>
                     {
                         data.image
@@ -70,20 +68,20 @@ class ProductDetail extends Component {
                     }
                 </div>
                 <div className='col-8 container'>
-                    <div className='py-3'>
+                    <div className='py-1'>
                         <h3>
                             {data.name}
                         </h3>
                     </div>
-                    <div className='py-3'>
+                    <div className='py-1'>
                         <h5>
                             {data.brand}
                         </h5>
                     </div>
-                    <div className='py-3'>
+                    <div className='py-1'>
                         {data.category}
                     </div>
-                    <div className='py-3'>
+                    <div className='py-1'>
                         
                         {
                             data.price
@@ -95,7 +93,12 @@ class ProductDetail extends Component {
                             null
                         }
                     </div>
-                    <div className='py-3'>
+                    <div className='py-1'>
+                        <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+                    <div className='py-1'>
                         <Select options={this.state.sizes}/>
                     </div>
                     <div className='py-3' style={{float: 'right'}}>
@@ -108,5 +111,12 @@ class ProductDetail extends Component {
         );
     }
 }
- 
-export default ProductDetail;
+
+const mapStatetoProps = (state) => {
+    return{
+        data : state.product.productById,
+        loading : state.product.loading
+    }
+}
+
+export default connect(mapStatetoProps, { fetchDataById })(ProductDetail);
